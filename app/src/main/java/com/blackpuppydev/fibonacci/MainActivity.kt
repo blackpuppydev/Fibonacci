@@ -1,17 +1,19 @@
 package com.blackpuppydev.fibonacci
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_adapter.view.*
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportActionBar?.hide()
 
         list_item.layoutManager = LinearLayoutManager(this)
         loadView()
@@ -84,6 +88,11 @@ class MainActivity : AppCompatActivity() {
 
         fun setData(item:ItemFibonacci,position: Int){
             itemView.title.text = "Index: $position, Number: ${item.number}"
+
+            val images =
+                intArrayOf(R.drawable.circle, R.drawable.close, R.drawable.square)
+            val rand = Random()
+            itemView.icon.setImageResource(images[rand.nextInt(images.size)])
 
         }
 
